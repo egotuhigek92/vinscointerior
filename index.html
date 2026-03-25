@@ -1,0 +1,2211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vensco Interior Inc — Crafting Spaces, Defining Lives</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream: #f5f0e8;
+    --warm-white: #faf8f4;
+    --charcoal: #1c1c1a;
+    --deep-brown: #2d2419;
+    --gold: #c9a84c;
+    --gold-light: #e8c97a;
+    --taupe: #9e8e7a;
+    --soft-taupe: #d4c9b8;
+    --rust: #a0522d;
+    --sage: #7a8c6e;
+    --font-display: 'Cormorant Garamond', serif;
+    --font-body: 'Jost', sans-serif;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: var(--font-body);
+    background: var(--warm-white);
+    color: var(--charcoal);
+    overflow-x: hidden;
+  }
+
+  /* NAVIGATION */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 1000;
+    padding: 0 60px;
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: rgba(250, 248, 244, 0.95);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(201,168,76,0.2);
+    transition: all 0.3s ease;
+  }
+
+  .nav-logo {
+    display: flex;
+    flex-direction: column;
+    line-height: 1;
+  }
+
+  .nav-logo .brand {
+    font-family: var(--font-display);
+    font-size: 24px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    color: var(--charcoal);
+  }
+
+  .nav-logo .tagline {
+    font-size: 9px;
+    letter-spacing: 4px;
+    color: var(--gold);
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 40px;
+    list-style: none;
+  }
+
+  .nav-links a {
+    text-decoration: none;
+    font-size: 11px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--charcoal);
+    font-weight: 500;
+    position: relative;
+    transition: color 0.3s;
+  }
+
+  .nav-links a::after {
+    content: '';
+    position: absolute;
+    bottom: -3px;
+    left: 0;
+    width: 0;
+    height: 1px;
+    background: var(--gold);
+    transition: width 0.3s ease;
+  }
+
+  .nav-links a:hover { color: var(--gold); }
+  .nav-links a:hover::after { width: 100%; }
+
+  .nav-cta {
+    background: var(--charcoal);
+    color: var(--cream) !important;
+    padding: 10px 24px !important;
+    letter-spacing: 2px !important;
+    font-size: 10px !important;
+  }
+
+  .nav-cta:hover { background: var(--gold); color: var(--charcoal) !important; }
+  .nav-cta::after { display: none !important; }
+
+  /* HAMBURGER */
+  .hamburger {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
+    padding: 5px;
+  }
+
+  .hamburger span {
+    display: block;
+    width: 24px;
+    height: 2px;
+    background: var(--charcoal);
+    transition: all 0.3s;
+  }
+
+  /* SECTIONS */
+  .page-section {
+    display: none;
+    min-height: 100vh;
+    padding-top: 80px;
+  }
+
+  .page-section.active { display: block; }
+
+  /* ============ HERO ============ */
+  #home {
+    display: none;
+    position: relative;
+    overflow: hidden;
+  }
+
+  #home.active { display: block; }
+
+  .hero {
+    height: 100vh;
+    position: relative;
+    display: flex;
+    align-items: flex-end;
+    overflow: hidden;
+    background: var(--charcoal);
+  }
+
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(135deg, rgba(28,28,26,0.7) 0%, rgba(45,36,25,0.4) 100%),
+      url('https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?w=1800&q=80') center/cover no-repeat;
+    animation: heroZoom 14s ease-in-out infinite alternate;
+  }
+
+  @keyframes heroZoom {
+    from { transform: scale(1); }
+    to { transform: scale(1.04); }
+  }
+
+  .hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(28,28,26,0.85) 0%, transparent 60%);
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 2;
+    padding: 0 80px 100px;
+    max-width: 900px;
+    animation: heroFadeUp 1.2s ease forwards;
+  }
+
+  @keyframes heroFadeUp {
+    from { opacity: 0; transform: translateY(40px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .hero-eyebrow {
+    font-size: 10px;
+    letter-spacing: 6px;
+    text-transform: uppercase;
+    color: var(--gold);
+    font-family: var(--font-body);
+    font-weight: 500;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .hero-eyebrow::before {
+    content: '';
+    display: block;
+    width: 40px;
+    height: 1px;
+    background: var(--gold);
+  }
+
+  .hero-title {
+    font-family: var(--font-display);
+    font-size: clamp(54px, 8vw, 100px);
+    font-weight: 300;
+    color: var(--cream);
+    line-height: 0.95;
+    letter-spacing: -1px;
+    margin-bottom: 30px;
+  }
+
+  .hero-title em {
+    font-style: italic;
+    color: var(--gold-light);
+  }
+
+  .hero-sub {
+    font-size: 14px;
+    color: rgba(245,240,232,0.7);
+    letter-spacing: 1px;
+    line-height: 1.8;
+    max-width: 500px;
+    margin-bottom: 50px;
+  }
+
+  .hero-actions {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+  }
+
+  .btn-primary {
+    background: var(--gold);
+    color: var(--charcoal);
+    padding: 16px 36px;
+    font-size: 10px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    font-weight: 600;
+    font-family: var(--font-body);
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s;
+    text-decoration: none;
+    display: inline-block;
+  }
+
+  .btn-primary:hover {
+    background: var(--gold-light);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 30px rgba(201,168,76,0.3);
+  }
+
+  .btn-ghost {
+    color: var(--cream);
+    font-size: 10px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    font-weight: 500;
+    font-family: var(--font-body);
+    border: 1px solid rgba(245,240,232,0.4);
+    padding: 16px 36px;
+    cursor: pointer;
+    background: transparent;
+    transition: all 0.3s;
+    text-decoration: none;
+    display: inline-block;
+  }
+
+  .btn-ghost:hover {
+    border-color: var(--gold);
+    color: var(--gold);
+  }
+
+  .hero-stats {
+    position: absolute;
+    right: 80px;
+    bottom: 100px;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    animation: heroFadeUp 1.4s ease 0.3s both;
+  }
+
+  .stat-item {
+    text-align: right;
+  }
+
+  .stat-num {
+    font-family: var(--font-display);
+    font-size: 42px;
+    font-weight: 300;
+    color: var(--gold);
+    line-height: 1;
+  }
+
+  .stat-label {
+    font-size: 9px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: rgba(245,240,232,0.6);
+    font-weight: 400;
+  }
+
+  /* Intro section */
+  .intro-section {
+    background: var(--cream);
+    padding: 120px 80px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 100px;
+    align-items: center;
+  }
+
+  .section-eyebrow {
+    font-size: 9px;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    color: var(--gold);
+    font-weight: 500;
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+
+  .section-eyebrow::before {
+    content: '';
+    display: block;
+    width: 30px;
+    height: 1px;
+    background: var(--gold);
+  }
+
+  .section-title {
+    font-family: var(--font-display);
+    font-size: clamp(36px, 5vw, 60px);
+    font-weight: 300;
+    line-height: 1.1;
+    color: var(--charcoal);
+    margin-bottom: 24px;
+  }
+
+  .section-title em { font-style: italic; color: var(--rust); }
+
+  .section-body {
+    font-size: 15px;
+    line-height: 1.9;
+    color: var(--taupe);
+    font-weight: 300;
+  }
+
+  .intro-image-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 200px 200px;
+    gap: 12px;
+  }
+
+  .intro-img {
+    overflow: hidden;
+    position: relative;
+  }
+
+  .intro-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s ease;
+  }
+
+  .intro-img:hover img { transform: scale(1.05); }
+  .intro-img:first-child { grid-row: span 2; }
+
+  /* ============ SERVICES ============ */
+  #services { background: var(--warm-white); }
+
+  .services-header {
+    text-align: center;
+    padding: 100px 80px 60px;
+  }
+
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+    background: var(--soft-taupe);
+    margin: 0;
+  }
+
+  .service-card {
+    background: var(--warm-white);
+    padding: 60px 50px;
+    position: relative;
+    overflow: hidden;
+    transition: background 0.4s ease;
+    cursor: default;
+  }
+
+  .service-card::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 3px;
+    background: var(--gold);
+    transition: width 0.4s ease;
+  }
+
+  .service-card:hover { background: var(--cream); }
+  .service-card:hover::before { width: 100%; }
+
+  .service-number {
+    font-family: var(--font-display);
+    font-size: 64px;
+    font-weight: 300;
+    color: rgba(201,168,76,0.15);
+    line-height: 1;
+    margin-bottom: 20px;
+    transition: color 0.4s;
+  }
+
+  .service-card:hover .service-number { color: rgba(201,168,76,0.3); }
+
+  .service-icon {
+    width: 48px;
+    height: 48px;
+    margin-bottom: 20px;
+    color: var(--gold);
+  }
+
+  .service-name {
+    font-family: var(--font-display);
+    font-size: 26px;
+    font-weight: 400;
+    color: var(--charcoal);
+    margin-bottom: 14px;
+  }
+
+  .service-desc {
+    font-size: 13px;
+    line-height: 1.8;
+    color: var(--taupe);
+    font-weight: 300;
+  }
+
+  .service-price {
+    margin-top: 24px;
+    font-size: 11px;
+    letter-spacing: 2px;
+    color: var(--gold);
+    font-weight: 500;
+    text-transform: uppercase;
+  }
+
+  .services-cta {
+    text-align: center;
+    padding: 80px;
+    background: var(--charcoal);
+  }
+
+  .services-cta h3 {
+    font-family: var(--font-display);
+    font-size: 42px;
+    font-weight: 300;
+    color: var(--cream);
+    margin-bottom: 16px;
+  }
+
+  .services-cta p {
+    font-size: 14px;
+    color: var(--taupe);
+    margin-bottom: 36px;
+  }
+
+  /* ============ GALLERY ============ */
+  #gallery { background: var(--charcoal); }
+
+  .gallery-header {
+    padding: 100px 80px 60px;
+  }
+
+  .gallery-header .section-title { color: var(--cream); }
+  .gallery-header .section-body { color: rgba(158,142,122,0.8); }
+
+  .gallery-filters {
+    display: flex;
+    gap: 6px;
+    margin-top: 40px;
+    flex-wrap: wrap;
+  }
+
+  .filter-btn {
+    padding: 8px 22px;
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-family: var(--font-body);
+    font-weight: 500;
+    border: 1px solid rgba(201,168,76,0.3);
+    background: transparent;
+    color: rgba(245,240,232,0.6);
+    cursor: pointer;
+    transition: all 0.3s;
+  }
+
+  .filter-btn.active, .filter-btn:hover {
+    background: var(--gold);
+    color: var(--charcoal);
+    border-color: var(--gold);
+  }
+
+  .gallery-masonry {
+    padding: 20px 40px 80px;
+    columns: 3;
+    column-gap: 16px;
+  }
+
+  .gallery-item {
+    break-inside: avoid;
+    margin-bottom: 16px;
+    overflow: hidden;
+    position: relative;
+    cursor: pointer;
+  }
+
+  .gallery-item img {
+    width: 100%;
+    display: block;
+    transition: transform 0.5s ease;
+  }
+
+  .gallery-item:hover img { transform: scale(1.04); }
+
+  .gallery-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(28,28,26,0.8) 0%, transparent 60%);
+    opacity: 0;
+    transition: opacity 0.3s;
+    display: flex;
+    align-items: flex-end;
+    padding: 24px;
+  }
+
+  .gallery-item:hover .gallery-overlay { opacity: 1; }
+
+  .gallery-caption {
+    font-family: var(--font-display);
+    font-size: 18px;
+    color: var(--cream);
+    font-style: italic;
+  }
+
+  /* ============ ABOUT ============ */
+  #about { background: var(--cream); }
+
+  .about-hero {
+    position: relative;
+    height: 500px;
+    overflow: hidden;
+  }
+
+  .about-hero img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 30%;
+  }
+
+  .about-hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to right, rgba(28,28,26,0.7) 0%, transparent 60%);
+    display: flex;
+    align-items: center;
+    padding: 80px;
+  }
+
+  .about-hero-text {
+    max-width: 500px;
+  }
+
+  .about-hero-text h1 {
+    font-family: var(--font-display);
+    font-size: 64px;
+    font-weight: 300;
+    color: var(--cream);
+    line-height: 1;
+    margin-bottom: 16px;
+  }
+
+  .about-hero-text p {
+    font-size: 14px;
+    color: rgba(245,240,232,0.75);
+    line-height: 1.8;
+  }
+
+  .about-story {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    padding: 100px 80px;
+    align-items: center;
+  }
+
+  .about-story img {
+    width: 100%;
+    height: 500px;
+    object-fit: cover;
+  }
+
+  .about-values {
+    background: var(--charcoal);
+    padding: 100px 80px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 40px;
+  }
+
+  .value-card {
+    border-top: 1px solid rgba(201,168,76,0.3);
+    padding-top: 30px;
+  }
+
+  .value-num {
+    font-family: var(--font-display);
+    font-size: 48px;
+    font-weight: 300;
+    color: var(--gold);
+    opacity: 0.4;
+    line-height: 1;
+    margin-bottom: 14px;
+  }
+
+  .value-name {
+    font-family: var(--font-display);
+    font-size: 22px;
+    color: var(--cream);
+    margin-bottom: 10px;
+  }
+
+  .value-desc {
+    font-size: 13px;
+    line-height: 1.8;
+    color: var(--taupe);
+    font-weight: 300;
+  }
+
+  .team-section {
+    padding: 100px 80px;
+    background: var(--warm-white);
+  }
+
+  .team-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 40px;
+    margin-top: 60px;
+  }
+
+  .team-card {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .team-photo {
+    width: 100%;
+    height: 360px;
+    object-fit: cover;
+    display: block;
+    filter: grayscale(20%);
+    transition: all 0.5s;
+  }
+
+  .team-card:hover .team-photo { filter: grayscale(0%); transform: scale(1.03); }
+
+  .team-info {
+    padding: 24px 0 0;
+  }
+
+  .team-name {
+    font-family: var(--font-display);
+    font-size: 24px;
+    font-weight: 400;
+    color: var(--charcoal);
+  }
+
+  .team-role {
+    font-size: 11px;
+    letter-spacing: 3px;
+    color: var(--gold);
+    text-transform: uppercase;
+    font-weight: 500;
+    margin-top: 4px;
+  }
+
+  /* ============ REVIEWS ============ */
+  #reviews { background: var(--warm-white); }
+
+  .reviews-header {
+    text-align: center;
+    padding: 100px 80px 60px;
+  }
+
+  .rating-showcase {
+    background: var(--charcoal);
+    padding: 60px 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 80px;
+  }
+
+  .rating-big {
+    text-align: center;
+  }
+
+  .rating-number {
+    font-family: var(--font-display);
+    font-size: 100px;
+    font-weight: 300;
+    color: var(--gold);
+    line-height: 1;
+  }
+
+  .rating-stars {
+    font-size: 24px;
+    color: var(--gold);
+    margin: 8px 0;
+    letter-spacing: 4px;
+  }
+
+  .rating-label {
+    font-size: 11px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--taupe);
+  }
+
+  .rating-divider {
+    width: 1px;
+    height: 100px;
+    background: rgba(201,168,76,0.2);
+  }
+
+  .rating-breakdown {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    min-width: 300px;
+  }
+
+  .rating-bar-row {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+
+  .rating-bar-label {
+    font-size: 12px;
+    color: var(--taupe);
+    width: 40px;
+    text-align: right;
+  }
+
+  .rating-bar-track {
+    flex: 1;
+    height: 4px;
+    background: rgba(255,255,255,0.1);
+    border-radius: 2px;
+    overflow: hidden;
+  }
+
+  .rating-bar-fill {
+    height: 100%;
+    background: var(--gold);
+    border-radius: 2px;
+  }
+
+  .rating-bar-count {
+    font-size: 12px;
+    color: var(--taupe);
+    width: 20px;
+  }
+
+  .reviews-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+    background: var(--soft-taupe);
+    padding: 2px;
+  }
+
+  .review-card {
+    background: var(--warm-white);
+    padding: 50px 44px;
+    position: relative;
+  }
+
+  .review-quote {
+    font-size: 80px;
+    font-family: var(--font-display);
+    color: var(--gold);
+    opacity: 0.2;
+    line-height: 0.6;
+    margin-bottom: 20px;
+  }
+
+  .review-text {
+    font-family: var(--font-display);
+    font-size: 17px;
+    line-height: 1.8;
+    font-style: italic;
+    color: var(--charcoal);
+    font-weight: 300;
+    margin-bottom: 30px;
+  }
+
+  .review-stars { color: var(--gold); font-size: 14px; margin-bottom: 14px; }
+
+  .review-author {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+
+  .review-avatar {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid var(--soft-taupe);
+  }
+
+  .review-name {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--charcoal);
+    letter-spacing: 1px;
+  }
+
+  .review-location {
+    font-size: 11px;
+    color: var(--taupe);
+    letter-spacing: 1px;
+  }
+
+  .review-project {
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--gold);
+    font-weight: 500;
+    margin-top: 4px;
+  }
+
+  /* ============ CONTACT ============ */
+  #contact { background: var(--cream); }
+
+  .contact-split {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    min-height: calc(100vh - 80px);
+  }
+
+  .contact-info {
+    background: var(--charcoal);
+    padding: 100px 70px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .contact-info::before {
+    content: '';
+    position: absolute;
+    bottom: -100px;
+    right: -100px;
+    width: 400px;
+    height: 400px;
+    border-radius: 50%;
+    border: 1px solid rgba(201,168,76,0.1);
+  }
+
+  .contact-info::after {
+    content: '';
+    position: absolute;
+    bottom: -60px;
+    right: -60px;
+    width: 280px;
+    height: 280px;
+    border-radius: 50%;
+    border: 1px solid rgba(201,168,76,0.08);
+  }
+
+  .contact-info .section-title { color: var(--cream); }
+  .contact-info .section-body { color: var(--taupe); margin-bottom: 50px; }
+
+  .contact-details {
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .contact-item {
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+  }
+
+  .contact-icon {
+    width: 40px;
+    height: 40px;
+    border: 1px solid rgba(201,168,76,0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    color: var(--gold);
+  }
+
+  .contact-item-label {
+    font-size: 10px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--gold);
+    font-weight: 500;
+    margin-bottom: 4px;
+  }
+
+  .contact-item-value {
+    font-size: 14px;
+    color: var(--cream);
+    line-height: 1.6;
+    font-weight: 300;
+  }
+
+  .contact-form-side {
+    padding: 100px 70px;
+    background: var(--cream);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .form-title {
+    font-family: var(--font-display);
+    font-size: 36px;
+    font-weight: 400;
+    color: var(--charcoal);
+    margin-bottom: 8px;
+  }
+
+  .form-sub {
+    font-size: 13px;
+    color: var(--taupe);
+    margin-bottom: 40px;
+    line-height: 1.7;
+  }
+
+  .form-group {
+    margin-bottom: 24px;
+  }
+
+  .form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+
+  .form-label {
+    display: block;
+    font-size: 10px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--taupe);
+    font-weight: 500;
+    margin-bottom: 8px;
+  }
+
+  .form-input, .form-select, .form-textarea {
+    width: 100%;
+    padding: 14px 0;
+    border: none;
+    border-bottom: 1px solid var(--soft-taupe);
+    background: transparent;
+    font-family: var(--font-body);
+    font-size: 14px;
+    color: var(--charcoal);
+    font-weight: 300;
+    outline: none;
+    transition: border-color 0.3s;
+  }
+
+  .form-input:focus, .form-select:focus, .form-textarea:focus {
+    border-bottom-color: var(--gold);
+  }
+
+  .form-textarea {
+    resize: none;
+    height: 100px;
+  }
+
+  .form-select option { background: var(--cream); }
+
+  .submit-btn {
+    background: var(--charcoal);
+    color: var(--cream);
+    padding: 18px 48px;
+    font-size: 10px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    font-weight: 600;
+    font-family: var(--font-body);
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s;
+    margin-top: 10px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .submit-btn::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: var(--gold);
+    transform: translateX(-100%);
+    transition: transform 0.4s ease;
+    z-index: 0;
+  }
+
+  .submit-btn span { position: relative; z-index: 1; }
+
+  .submit-btn:hover::after { transform: translateX(0); }
+  .submit-btn:hover { color: var(--charcoal); }
+
+  /* FOOTER */
+  footer {
+    background: var(--deep-brown);
+    padding: 80px 80px 40px;
+  }
+
+  .footer-top {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 60px;
+    padding-bottom: 60px;
+    border-bottom: 1px solid rgba(201,168,76,0.15);
+    margin-bottom: 40px;
+  }
+
+  .footer-brand .brand {
+    font-family: var(--font-display);
+    font-size: 28px;
+    font-weight: 600;
+    color: var(--cream);
+    letter-spacing: 2px;
+  }
+
+  .footer-brand .tagline {
+    font-size: 9px;
+    letter-spacing: 4px;
+    color: var(--gold);
+    text-transform: uppercase;
+    display: block;
+    margin-bottom: 20px;
+  }
+
+  .footer-brand p {
+    font-size: 13px;
+    color: var(--taupe);
+    line-height: 1.8;
+    font-weight: 300;
+    margin-bottom: 24px;
+  }
+
+  .footer-col h4 {
+    font-size: 10px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--gold);
+    font-weight: 500;
+    margin-bottom: 20px;
+  }
+
+  .footer-col ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .footer-col ul li a {
+    font-size: 13px;
+    color: var(--taupe);
+    text-decoration: none;
+    font-weight: 300;
+    transition: color 0.3s;
+    cursor: pointer;
+  }
+
+  .footer-col ul li a:hover { color: var(--gold); }
+
+  .footer-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .footer-copy {
+    font-size: 12px;
+    color: var(--taupe);
+    font-weight: 300;
+  }
+
+  .footer-socials {
+    display: flex;
+    gap: 16px;
+  }
+
+  .social-link {
+    width: 36px;
+    height: 36px;
+    border: 1px solid rgba(201,168,76,0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--taupe);
+    text-decoration: none;
+    font-size: 13px;
+    transition: all 0.3s;
+    cursor: pointer;
+  }
+
+  .social-link:hover {
+    border-color: var(--gold);
+    color: var(--gold);
+  }
+
+  /* Toast notification */
+  .toast {
+    position: fixed;
+    bottom: 40px;
+    right: 40px;
+    background: var(--charcoal);
+    color: var(--cream);
+    padding: 16px 28px;
+    font-size: 13px;
+    letter-spacing: 1px;
+    border-left: 3px solid var(--gold);
+    z-index: 9999;
+    transform: translateY(100px);
+    opacity: 0;
+    transition: all 0.4s ease;
+  }
+
+  .toast.show {
+    transform: translateY(0);
+    opacity: 1;
+  }
+
+  /* Lightbox */
+  .lightbox {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(28,28,26,0.95);
+    z-index: 9999;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .lightbox.open { display: flex; }
+
+  .lightbox img {
+    max-width: 90vw;
+    max-height: 85vh;
+    object-fit: contain;
+  }
+
+  .lightbox-close {
+    position: absolute;
+    top: 30px;
+    right: 40px;
+    color: var(--cream);
+    font-size: 32px;
+    cursor: pointer;
+    font-family: var(--font-display);
+    opacity: 0.7;
+    transition: opacity 0.3s;
+  }
+
+  .lightbox-close:hover { opacity: 1; }
+
+  /* Gallery strip */
+  .gallery-strip {
+    overflow: hidden;
+    background: var(--charcoal);
+    padding: 20px 0;
+    border-top: 1px solid rgba(201,168,76,0.1);
+  }
+  .strip-track {
+    display: flex;
+    gap: 12px;
+    animation: stripScroll 32s linear infinite;
+    width: max-content;
+  }
+  .strip-track img {
+    width: 320px;
+    height: 200px;
+    object-fit: cover;
+    flex-shrink: 0;
+    opacity: 0.7;
+    transition: opacity 0.3s;
+  }
+  .strip-track img:hover { opacity: 1; }
+  @keyframes stripScroll {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+
+  /* Featured grid on home */
+  .featured-section {
+    padding: 100px 80px;
+    background: var(--charcoal);
+  }
+  .featured-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: auto auto;
+    gap: 14px;
+    margin-top: 50px;
+  }
+  .featured-card {
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+  }
+  .featured-card img {
+    width: 100%;
+    height: 260px;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.5s ease;
+  }
+  .featured-card.tall { grid-column: span 2; grid-row: span 2; }
+  .featured-card.tall img { height: 100%; min-height: 534px; }
+  .featured-card.wide { grid-column: span 2; }
+  .featured-card:hover img { transform: scale(1.05); }
+  .featured-badge {
+    position: absolute;
+    bottom: 16px;
+    left: 16px;
+    background: rgba(28,28,26,0.75);
+    backdrop-filter: blur(6px);
+    border-left: 2px solid var(--gold);
+    padding: 8px 14px;
+    opacity: 0;
+    transform: translateY(8px);
+    transition: all 0.35s ease;
+  }
+  .featured-card:hover .featured-badge { opacity: 1; transform: translateY(0); }
+  .featured-badge span {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: 14px;
+    color: var(--cream);
+  }
+
+  /* Room type strip on services */
+  .room-showcase {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 0;
+  }
+  .room-card {
+    position: relative;
+    overflow: hidden;
+    height: 280px;
+  }
+  .room-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s, filter 0.4s;
+    filter: brightness(0.65);
+  }
+  .room-card:hover img { transform: scale(1.08); filter: brightness(0.5); }
+  .room-label {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+    padding: 20px 12px;
+    text-align: center;
+  }
+  .room-label h4 {
+    font-family: var(--font-display);
+    font-size: 16px;
+    font-style: italic;
+    color: var(--cream);
+    line-height: 1.2;
+  }
+  .room-label span {
+    font-size: 8px;
+    letter-spacing: 3px;
+    color: var(--gold);
+    text-transform: uppercase;
+    font-weight: 500;
+    margin-top: 4px;
+  }
+
+  /* Responsive */
+  @media (max-width: 1024px) {
+    .featured-grid { grid-template-columns: repeat(2, 1fr); }
+    .featured-card.tall { grid-column: span 2; }
+    .featured-card.wide { grid-column: span 2; }
+    .room-showcase { grid-template-columns: repeat(3, 1fr); }
+    nav { padding: 0 30px; }
+    .nav-links { gap: 24px; }
+    .hero-content { padding: 0 40px 80px; }
+    .hero-stats { right: 40px; bottom: 80px; }
+    .intro-section, .about-story { grid-template-columns: 1fr; gap: 40px; padding: 70px 40px; }
+    .services-grid, .reviews-grid { grid-template-columns: repeat(2, 1fr); }
+    .about-values { grid-template-columns: repeat(2, 1fr); padding: 70px 40px; }
+    .team-grid { grid-template-columns: repeat(2, 1fr); }
+    .contact-split { grid-template-columns: 1fr; }
+    .footer-top { grid-template-columns: 1fr 1fr; }
+    .gallery-masonry { columns: 2; }
+  }
+
+  @media (max-width: 768px) {
+    nav { padding: 0 20px; }
+    .nav-links { display: none; }
+    .hamburger { display: flex; }
+    .hero-content { padding: 0 24px 70px; }
+    .hero-stats { display: none; }
+    .services-grid, .reviews-grid { grid-template-columns: 1fr; }
+    .about-values { grid-template-columns: 1fr; }
+    .team-grid { grid-template-columns: 1fr; }
+    .gallery-masonry { columns: 1; padding: 20px 20px 60px; }
+    .services-header, .reviews-header, .gallery-header, .team-section { padding: 60px 24px; }
+    .contact-info, .contact-form-side { padding: 60px 24px; }
+    .footer-top { grid-template-columns: 1fr; }
+    footer { padding: 60px 24px 30px; }
+    .rating-showcase { flex-direction: column; gap: 30px; padding: 40px 24px; }
+    .rating-divider { width: 100px; height: 1px; }
+    .intro-section { padding: 60px 24px; }
+    .featured-grid { grid-template-columns: 1fr; }
+    .featured-card.tall, .featured-card.wide { grid-column: span 1; }
+    .featured-card.tall img { min-height: 260px; }
+    .room-showcase { grid-template-columns: repeat(2, 1fr); }
+    .featured-section { padding: 60px 24px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAVIGATION -->
+<nav id="mainNav">
+  <div class="nav-logo">
+    <span class="brand">VENSCO</span>
+    <span class="tagline">Interior Inc</span>
+  </div>
+  <ul class="nav-links">
+    <li><a href="#" onclick="showSection('home')">Home</a></li>
+    <li><a href="#" onclick="showSection('services')">Services</a></li>
+    <li><a href="#" onclick="showSection('gallery')">Gallery</a></li>
+    <li><a href="#" onclick="showSection('about')">About Us</a></li>
+    <li><a href="#" onclick="showSection('reviews')">Reviews</a></li>
+    <li><a href="#" onclick="showSection('contact')" class="nav-cta">Contact Us</a></li>
+  </ul>
+  <div class="hamburger" onclick="toggleMenu()">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<!-- ======================== HOME ======================== -->
+<section id="home" class="page-section active">
+  <!-- Hero -->
+  <div class="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <div class="hero-eyebrow">Award-Winning Interior Design Studio</div>
+      <h1 class="hero-title">Where <em>Vision</em><br>Meets Space</h1>
+      <p class="hero-sub">Vensco Interior Inc transforms living and working environments into extraordinary experiences — blending artistry, function, and enduring elegance.</p>
+      <div class="hero-actions">
+        <a href="#" class="btn-primary" onclick="showSection('gallery')">Explore Our Work</a>
+        <a href="#" class="btn-ghost" onclick="showSection('contact')">Book a Consultation</a>
+      </div>
+    </div>
+    <div class="hero-stats">
+      <div class="stat-item">
+        <div class="stat-num">14+</div>
+        <div class="stat-label">Years of Excellence</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">640</div>
+        <div class="stat-label">Projects Completed</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">98%</div>
+        <div class="stat-label">Client Satisfaction</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Intro -->
+  <div class="intro-section">
+    <div>
+      <div class="section-eyebrow">Our Philosophy</div>
+      <h2 class="section-title">Design That <em>Breathes</em> With You</h2>
+      <p class="section-body">At Vensco Interior Inc, we believe that a well-designed space is more than aesthetic — it's the framework of daily life. Every project begins with deep listening: understanding how you move, feel, and live within your environment.</p>
+      <br>
+      <p class="section-body">Our team of award-winning designers brings together architectural precision, curated material selection, and a deeply human sensibility to craft spaces that are uniquely, unmistakably yours.</p>
+      <br>
+      <a href="#" class="btn-primary" style="margin-top:20px;display:inline-block" onclick="showSection('about')">Meet Our Team</a>
+    </div>
+    <div class="intro-image-grid">
+      <div class="intro-img">
+        <img src="https://images.unsplash.com/photo-1600210492493-0946911123ea?w=600&q=80" alt="Modern Living Room">
+      </div>
+      <div class="intro-img">
+        <img src="https://images.unsplash.com/photo-1616046229478-9901c5536a45?w=400&q=80" alt="Bedroom Design">
+      </div>
+      <div class="intro-img">
+        <img src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=400&q=80" alt="Kitchen Interior">
+      </div>
+    </div>
+  </div>
+
+  <!-- Featured Interior Images Grid -->
+  <div class="featured-section">
+    <div class="section-eyebrow" style="color:var(--gold)">Featured Projects</div>
+    <h2 class="section-title" style="color:var(--cream);max-width:500px">Recent <em style="color:var(--gold-light)">Interior</em> Transformations</h2>
+    <div class="featured-grid">
+      <div class="featured-card tall">
+        <img src="https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?w=900&q=85" alt="Living Room">
+        <div class="featured-badge"><span>Armitage Residence — Living Room</span></div>
+      </div>
+      <div class="featured-card">
+        <img src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=600&q=85" alt="Kitchen">
+        <div class="featured-badge"><span>The Chef's Kitchen</span></div>
+      </div>
+      <div class="featured-card">
+        <img src="https://images.unsplash.com/photo-1584622650111-993a426fbf0a?w=600&q=85" alt="Bathroom">
+        <div class="featured-badge"><span>Slate & Stone Bath</span></div>
+      </div>
+      <div class="featured-card wide">
+        <img src="https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?w=900&q=85" alt="Warm Living">
+        <div class="featured-badge"><span>Warm Toned Living — Uptown</span></div>
+      </div>
+      <div class="featured-card">
+        <img src="https://images.unsplash.com/photo-1615874959474-d609969a20ed?w=600&q=85" alt="Bedroom">
+        <div class="featured-badge"><span>Serenity Suite</span></div>
+      </div>
+      <div class="featured-card">
+        <img src="https://images.unsplash.com/photo-1568992687947-868a62a9f521?w=600&q=85" alt="Office">
+        <div class="featured-badge"><span>Dark Executive Office</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================== SERVICES ======================== -->
+<section id="services" class="page-section">
+  <!-- Room type image strip -->
+  <div class="room-showcase">
+    <div class="room-card">
+      <img src="https://images.unsplash.com/photo-1600210492493-0946911123ea?w=500&q=85" alt="Living">
+      <div class="room-label"><h4>Living Rooms</h4><span>Comfort & Style</span></div>
+    </div>
+    <div class="room-card">
+      <img src="https://images.unsplash.com/photo-1615874959474-d609969a20ed?w=500&q=85" alt="Bedroom">
+      <div class="room-label"><h4>Bedrooms</h4><span>Rest & Sanctuary</span></div>
+    </div>
+    <div class="room-card">
+      <img src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=500&q=85" alt="Kitchen">
+      <div class="room-label"><h4>Kitchens</h4><span>Culinary Spaces</span></div>
+    </div>
+    <div class="room-card">
+      <img src="https://images.unsplash.com/photo-1552321554-5fefe8c9ef14?w=500&q=85" alt="Bathroom">
+      <div class="room-label"><h4>Bathrooms</h4><span>Spa Retreats</span></div>
+    </div>
+    <div class="room-card">
+      <img src="https://images.unsplash.com/photo-1568992687947-868a62a9f521?w=500&q=85" alt="Office">
+      <div class="room-label"><h4>Offices</h4><span>Productivity & Focus</span></div>
+    </div>
+    <div class="room-card">
+      <img src="https://images.unsplash.com/photo-1583847268964-b28dc8f51f92?w=500&q=85" alt="Lounge">
+      <div class="room-label"><h4>Hospitality</h4><span>Hotels & Restaurants</span></div>
+    </div>
+  </div>
+
+  <div class="services-header">
+    <div class="section-eyebrow" style="justify-content:center">What We Offer</div>
+    <h2 class="section-title">Comprehensive <em>Design</em> Services</h2>
+    <p class="section-body" style="max-width:560px;margin:0 auto">From concept to completion, we handle every detail of your interior transformation with unmatched expertise and personal care.</p>
+  </div>
+
+  <div class="services-grid">
+    <div class="service-card">
+      <div class="service-number">01</div>
+      <svg class="service-icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5">
+        <rect x="6" y="10" width="36" height="28" rx="2"/>
+        <path d="M6 18h36M16 10v8"/>
+      </svg>
+      <div class="service-name">Residential Design</div>
+      <p class="service-desc">Complete interior design for homes, apartments, villas and condos. From minimalist sanctuaries to maximalist expressions — we create spaces that reflect who you are.</p>
+      <div class="service-price">Starting from $2,500</div>
+    </div>
+    <div class="service-card">
+      <div class="service-number">02</div>
+      <svg class="service-icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5">
+        <path d="M8 40V20L24 8l16 12v20H8z"/>
+        <rect x="18" y="28" width="12" height="12"/>
+        <line x1="12" y1="20" x2="12" y2="30"/>
+        <line x1="36" y1="20" x2="36" y2="30"/>
+      </svg>
+      <div class="service-name">Commercial Spaces</div>
+      <p class="service-desc">Offices, retail environments, restaurants, and hospitality venues designed to elevate brand identity and maximize the performance of every square foot.</p>
+      <div class="service-price">Starting from $8,000</div>
+    </div>
+    <div class="service-card">
+      <div class="service-number">03</div>
+      <svg class="service-icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5">
+        <path d="M12 36V20M24 36V12M36 36V24"/>
+        <rect x="6" y="36" width="36" height="4" rx="1"/>
+      </svg>
+      <div class="service-name">Space Planning</div>
+      <p class="service-desc">Optimize your floor plan for flow, function, and feeling. Our spatial intelligence transforms even the most challenging layouts into harmonious, practical environments.</p>
+      <div class="service-price">Starting from $1,200</div>
+    </div>
+    <div class="service-card">
+      <div class="service-number">04</div>
+      <svg class="service-icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5">
+        <circle cx="24" cy="24" r="16"/>
+        <path d="M24 8v4M24 36v4M8 24h4M36 24h4"/>
+        <circle cx="24" cy="24" r="6"/>
+      </svg>
+      <div class="service-name">Lighting Design</div>
+      <p class="service-desc">Mood, task, accent — lighting is the most transformative element in any space. We engineer bespoke lighting schemes that sculpt atmosphere and define character.</p>
+      <div class="service-price">Starting from $900</div>
+    </div>
+    <div class="service-card">
+      <div class="service-number">05</div>
+      <svg class="service-icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5">
+        <rect x="8" y="8" width="14" height="14" rx="1"/>
+        <rect x="26" y="8" width="14" height="14" rx="1"/>
+        <rect x="8" y="26" width="14" height="14" rx="1"/>
+        <rect x="26" y="26" width="14" height="14" rx="1"/>
+      </svg>
+      <div class="service-name">Furniture & FF&E</div>
+      <p class="service-desc">Curated furniture procurement, custom millwork, and bespoke pieces sourced globally. Every selection is chosen with precision to serve both beauty and longevity.</p>
+      <div class="service-price">Starting from $3,500</div>
+    </div>
+    <div class="service-card">
+      <div class="service-number">06</div>
+      <svg class="service-icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5">
+        <path d="M24 4l4 8 9 1-6.5 6.3 1.5 9L24 24l-8 4.3 1.5-9L11 13l9-1z"/>
+        <path d="M24 28v16M18 38h12"/>
+      </svg>
+      <div class="service-name">3D Visualization</div>
+      <p class="service-desc">Photo-realistic 3D renders and virtual walkthroughs before a single wall is touched. See your future space in full detail, refine every element, and proceed with total confidence.</p>
+      <div class="service-price">Starting from $600</div>
+    </div>
+  </div>
+
+  <div class="services-cta">
+    <h3>Ready to Begin Your Transformation?</h3>
+    <p>Schedule a complimentary discovery consultation with our design team.</p>
+    <a href="#" class="btn-primary" onclick="showSection('contact')">Book a Free Consultation</a>
+  </div>
+</section>
+
+<!-- ======================== GALLERY ======================== -->
+<section id="gallery" class="page-section">
+  <div class="gallery-header">
+    <div class="section-eyebrow" style="color:var(--gold)">Our Portfolio</div>
+    <h2 class="section-title" style="color:var(--cream)">Spaces We've <em style="color:var(--gold-light)">Transformed</em></h2>
+    <p class="section-body" style="color:rgba(158,142,122,0.8);max-width:520px">Each project is a story — of a family, a vision, a way of being in the world. Browse our curated portfolio of residential and commercial transformations.</p>
+    <div class="gallery-filters">
+      <button class="filter-btn active" onclick="filterGallery(this,'all')">All Projects</button>
+      <button class="filter-btn" onclick="filterGallery(this,'living')">Living Rooms</button>
+      <button class="filter-btn" onclick="filterGallery(this,'bedroom')">Bedrooms</button>
+      <button class="filter-btn" onclick="filterGallery(this,'kitchen')">Kitchens</button>
+      <button class="filter-btn" onclick="filterGallery(this,'office')">Offices</button>
+      <button class="filter-btn" onclick="filterGallery(this,'bathroom')">Bathrooms</button>
+    </div>
+  </div>
+
+  <div class="gallery-masonry" id="galleryGrid">
+    <!-- LIVING ROOMS -->
+    <div class="gallery-item" data-cat="living" onclick="openLightbox(this)">
+      <img src="https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?w=700&q=85" alt="Living Room">
+      <div class="gallery-overlay"><div class="gallery-caption">The Armitage Residence</div></div>
+    </div>
+    <div class="gallery-item" data-cat="bedroom" onclick="openLightbox(this)">
+      <img src="https://images.unsplash.com/photo-1615874959474-d609969a20ed?w=700&q=85" alt="Bedroom">
+      <div class="gallery-overlay"><div class="gallery-caption">Serenity Suite — Penthouse</div></div>
+    </div>
+    <div class="gallery-item" data-cat="kitchen" onclick="openLightbox(this)">
+      <img src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=700&q=85" alt="Kitchen">
+      <div class="gallery-overlay"><div class="gallery-caption">The Chef's Kitchen</div></div>
+    </div>
+    <div class="gallery-item" data-cat="living" onclick="openLightbox(this)">
+      <img src="https://images.unsplash.com/photo-1600210492493-0946911123ea?w=700&q=85" alt="Living Room">
+      <div class="gallery-overlay"><div class="gallery-caption">Westside Loft</div></div>
+    </div>
+    <div class="gallery-item" data-cat="office" onclick="openLightbox(this)">
+      <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=700&q=85" alt="Office">
+      <div class="gallery-overlay"><div class="gallery-caption">Pinnacle HQ — Executive Floor</div></div>
+    </div>
+    <div class="gallery-item" data-cat="bathroom" onclick="openLightbox(this)">
+      <img src="https://images.unsplash.com/photo-1552321554-5fefe8c9ef14?w=700&q=85" alt="Bathroom">
+      <div class="gallery-overlay"><div class="gallery-caption">Spa Retreat Bathroom</div></div>
+    </div>
+    <div class="gallery-item" data-cat="bedroom" onclick="openLightbox(this)">
+      <img src="https://images.unsplash.com/photo-1616046229478-9901c5536a45?w=700&q=85" alt="Bedroom">
+      <div class="gallery-overlay"><div class="gallery-caption">Minimalist Master Suite</div></div>
+    </div>
+    <div class="gallery-item" data-cat="living" onclick="openLightbox(this)">
+      <img src="https://images.unsplash.com/photo-1567016432779-094069958ea5?w=700&q=85" alt="Lounge">
+      <div class="gallery-overlay"><div class="gallery-caption">The Harbor View Lounge</div></div>
+    </div>
+    <div class="gallery-item" data-cat="kitchen" onclick="openLightbox(this)">
+      <img src="https://images.unsplash.com/photo-1556909172-54557c7e4fb7?w=700&q=85" alt="Kitchen">
+      <div class="gallery-overlay"><div class="gallery-caption">Modern Galley Kitchen</div></div>
+    </div>
+    <div class="gallery-item" data-cat="office" onclick="openLightbox(this)">
+      <img src="https://images.unsplash.com/photo-1524758631624-e2822e304c36?w=700&q=85" alt="Home Office">
+      <div class="gallery-overlay"><div class="gallery-caption">Home Studio — Creative Suite</div></div>
+    </div>
+    <div class="gallery-item" data-cat="living" onclick="openLightbox(this)">
+      <img src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=700&q=85" alt="Dining Area">
+      <div class="gallery-overlay"><div class="gallery-caption">Dining in Elegance</div></div>
+    </div>
+    <div class="gallery-item" data-cat="bathroom" onclick="openLightbox(this)">
+      <img src="https://images.unsplash.com/photo-1507652313519-d4e9174996dd?w=700&q=85" alt="Bathroom">
+      <div class="gallery-overlay"><div class="gallery-caption">The Marble Bath</div></div>
+    </div>
+    <!-- MORE IMAGES ROW 2 -->
+    <div class="gallery-item" data-cat="living" onclick="openLightbox(this)">
+      <img src="https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=700&q=85" alt="Modern Sofa">
+      <div class="gallery-overlay"><div class="gallery-caption">Velvet & Walnut Living Room</div></div>
+    </div>
+    <div class="gallery-item" data-cat="bedroom" onclick="openLightbox(this)">
+      <img src="https://images.unsplash.com/photo-1540518614846-7eded433c457?w=700&q=85" alt="Luxury Bedroom">
+      <div class="gallery-overlay"><div class="gallery-caption">Ivory Dream Bedroom</div></div>
+    </div>
+    <div class="gallery-item" data-cat="kitchen" onclick="openLightbox(this)">
+      <img src="https://images.unsplash.com/photo-1565538810643-b5bdb714032a?w=700&q=85" alt="Island Kitchen">
+      <div class="gallery-overlay"><div class="gallery-caption">White Island Kitchen</div></div>
+    </div>
+    <div class="gallery-item" data-cat="living" onclick="openLightbox(this)">
+      <img src="https://images.unsplash.com/photo-1493809842364-78817add7ffb?w=700&q=85" alt="Open Plan">
+      <div class="gallery-overlay"><div class="gallery-caption">Open Plan — Midtown Apartment</div></div>
+    </div>
+    <div class="gallery-item" data-cat="bathroom" onclick="openLightbox(this)">
+      <img src="https://images.unsplash.com/photo-1584622650111-993a426fbf0a?w=700&q=85" alt="Modern Bathroom">
+      <div class="gallery-overlay"><div class="gallery-caption">Slate & Stone Bathroom</div></div>
+    </div>
+    <div class="gallery-item" data-cat="office" onclick="openLightbox(this)">
+      <img src="https://images.unsplash.com/photo-1568992687947-868a62a9f521?w=700&q=85" alt="Executive Office">
+      <div class="gallery-overlay"><div class="gallery-caption">Dark Executive Office</div></div>
+    </div>
+    <div class="gallery-item" data-cat="kitchen" onclick="openLightbox(this)">
+      <img src="https://images.unsplash.com/photo-1556909212-d5b604d0c90d?w=700&q=85" alt="Kitchen Detail">
+      <div class="gallery-overlay"><div class="gallery-caption">Matte Black Kitchen</div></div>
+    </div>
+    <div class="gallery-item" data-cat="bedroom" onclick="openLightbox(this)">
+      <img src="https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?w=700&q=85" alt="Cozy Bedroom">
+      <div class="gallery-overlay"><div class="gallery-caption">Nordic Retreat Bedroom</div></div>
+    </div>
+    <div class="gallery-item" data-cat="living" onclick="openLightbox(this)">
+      <img src="https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?w=700&q=85" alt="Warm Living">
+      <div class="gallery-overlay"><div class="gallery-caption">Warm Toned Living Area</div></div>
+    </div>
+    <div class="gallery-item" data-cat="bathroom" onclick="openLightbox(this)">
+      <img src="https://images.unsplash.com/photo-1620626011761-996317702782?w=700&q=85" alt="Freestanding Bath">
+      <div class="gallery-overlay"><div class="gallery-caption">Freestanding Bath Sanctuary</div></div>
+    </div>
+    <div class="gallery-item" data-cat="office" onclick="openLightbox(this)">
+      <img src="https://images.unsplash.com/photo-1497366754035-f200968a6e72?w=700&q=85" alt="Modern Office">
+      <div class="gallery-overlay"><div class="gallery-caption">Light-filled Creative Studio</div></div>
+    </div>
+    <div class="gallery-item" data-cat="living" onclick="openLightbox(this)">
+      <img src="https://images.unsplash.com/photo-1560185007-c5ca9d2c014d?w=700&q=85" alt="Contemporary Room">
+      <div class="gallery-overlay"><div class="gallery-caption">Contemporary Family Room</div></div>
+    </div>
+    <!-- ROW 3 -->
+    <div class="gallery-item" data-cat="kitchen" onclick="openLightbox(this)">
+      <img src="https://images.unsplash.com/photo-1600585154526-990dced4db0d?w=700&q=85" alt="Luxury Kitchen">
+      <div class="gallery-overlay"><div class="gallery-caption">Marble & Brass Kitchen</div></div>
+    </div>
+    <div class="gallery-item" data-cat="bedroom" onclick="openLightbox(this)">
+      <img src="https://images.unsplash.com/photo-1631049307264-da0ec9d70304?w=700&q=85" alt="Hotel Bedroom">
+      <div class="gallery-overlay"><div class="gallery-caption">The Grand Hotel Suite</div></div>
+    </div>
+    <div class="gallery-item" data-cat="living" onclick="openLightbox(this)">
+      <img src="https://images.unsplash.com/photo-1598928506311-c55ded91a20c?w=700&q=85" alt="Cozy Living">
+      <div class="gallery-overlay"><div class="gallery-caption">Cozy Corner Reading Room</div></div>
+    </div>
+    <div class="gallery-item" data-cat="bathroom" onclick="openLightbox(this)">
+      <img src="https://images.unsplash.com/photo-1600566752355-35792bedcfea?w=700&q=85" alt="Minimalist Bathroom">
+      <div class="gallery-overlay"><div class="gallery-caption">Zen Minimalist Bathroom</div></div>
+    </div>
+    <div class="gallery-item" data-cat="office" onclick="openLightbox(this)">
+      <img src="https://images.unsplash.com/photo-1604328698692-f76ea9498e76?w=700&q=85" alt="Home Office">
+      <div class="gallery-overlay"><div class="gallery-caption">Botanical Home Office</div></div>
+    </div>
+    <div class="gallery-item" data-cat="living" onclick="openLightbox(this)">
+      <img src="https://images.unsplash.com/photo-1583847268964-b28dc8f51f92?w=700&q=85" alt="Luxury Lounge">
+      <div class="gallery-overlay"><div class="gallery-caption">Luxury Penthouse Lounge</div></div>
+    </div>
+    <div class="gallery-item" data-cat="kitchen" onclick="openLightbox(this)">
+      <img src="https://images.unsplash.com/photo-1588854337236-6889d631faa8?w=700&q=85" alt="Kitchen Dining">
+      <div class="gallery-overlay"><div class="gallery-caption">Open Kitchen & Dining</div></div>
+    </div>
+    <div class="gallery-item" data-cat="bedroom" onclick="openLightbox(this)">
+      <img src="https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?w=700&q=85" alt="Boho Bedroom">
+      <div class="gallery-overlay"><div class="gallery-caption">Bohemian Loft Bedroom</div></div>
+    </div>
+  </div>
+
+  <!-- Image Strip Banner -->
+  <div class="gallery-strip">
+    <div class="strip-track">
+      <img src="https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?w=400&h=280&fit=crop&q=80" alt="">
+      <img src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=400&h=280&fit=crop&q=80" alt="">
+      <img src="https://images.unsplash.com/photo-1616046229478-9901c5536a45?w=400&h=280&fit=crop&q=80" alt="">
+      <img src="https://images.unsplash.com/photo-1600210492493-0946911123ea?w=400&h=280&fit=crop&q=80" alt="">
+      <img src="https://images.unsplash.com/photo-1584622650111-993a426fbf0a?w=400&h=280&fit=crop&q=80" alt="">
+      <img src="https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=400&h=280&fit=crop&q=80" alt="">
+      <img src="https://images.unsplash.com/photo-1568992687947-868a62a9f521?w=400&h=280&fit=crop&q=80" alt="">
+      <img src="https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?w=400&h=280&fit=crop&q=80" alt="">
+      <!-- duplicate for seamless loop -->
+      <img src="https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?w=400&h=280&fit=crop&q=80" alt="">
+      <img src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=400&h=280&fit=crop&q=80" alt="">
+      <img src="https://images.unsplash.com/photo-1616046229478-9901c5536a45?w=400&h=280&fit=crop&q=80" alt="">
+      <img src="https://images.unsplash.com/photo-1600210492493-0946911123ea?w=400&h=280&fit=crop&q=80" alt="">
+    </div>
+  </div>
+</section>
+
+<!-- ======================== ABOUT ======================== -->
+<section id="about" class="page-section">
+  <div class="about-hero">
+    <img src="https://images.unsplash.com/photo-1497366811353-6870744d04b2?w=1600&q=85" alt="Our Studio">
+    <div class="about-hero-overlay">
+      <div class="about-hero-text">
+        <h1>About<br><em style="font-style:italic">Vensco</em></h1>
+        <p>Founded on the belief that exceptional design transforms lives — not just spaces.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Interior image collage strip -->
+  <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:0;height:220px;">
+    <div style="overflow:hidden"><img src="https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?w=400&q=80" style="width:100%;height:100%;object-fit:cover;transition:transform 0.4s" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'"></div>
+    <div style="overflow:hidden"><img src="https://images.unsplash.com/photo-1540518614846-7eded433c457?w=400&q=80" style="width:100%;height:100%;object-fit:cover;transition:transform 0.4s" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'"></div>
+    <div style="overflow:hidden"><img src="https://images.unsplash.com/photo-1565538810643-b5bdb714032a?w=400&q=80" style="width:100%;height:100%;object-fit:cover;transition:transform 0.4s" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'"></div>
+    <div style="overflow:hidden"><img src="https://images.unsplash.com/photo-1631049307264-da0ec9d70304?w=400&q=80" style="width:100%;height:100%;object-fit:cover;transition:transform 0.4s" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'"></div>
+    <div style="overflow:hidden"><img src="https://images.unsplash.com/photo-1600585154526-990dced4db0d?w=400&q=80" style="width:100%;height:100%;object-fit:cover;transition:transform 0.4s" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'"></div>
+  </div>
+
+  <div class="about-story">
+    <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=800&q=80" alt="Design Process" style="border-radius:0">
+    <div>
+      <div class="section-eyebrow">Our Story</div>
+      <h2 class="section-title">14 Years of <em>Crafting</em> Extraordinary Spaces</h2>
+      <p class="section-body">Vensco Interior Inc was founded in 2010 by lead designer Marco Vensco with a singular mission: to bring honest, human-centered design to every project, regardless of scale or budget.</p>
+      <br>
+      <p class="section-body">What began as a boutique studio has grown into a full-service design firm with 18 specialists across disciplines — yet our approach remains deeply personal. Every client receives direct attention from a senior designer, and every project reflects our founding conviction that the details are the design.</p>
+      <br>
+      <p class="section-body">Over 640 completed projects across residential, commercial, and hospitality sectors have earned us recognition including the Regional Design Excellence Award (2019, 2022) and a place on the Annual 'Top 50 Interior Design Firms' list.</p>
+    </div>
+  </div>
+
+  <div class="about-values">
+    <div class="value-card">
+      <div class="value-num">01</div>
+      <div class="value-name">Human First</div>
+      <p class="value-desc">Every design decision begins with the person who will inhabit the space — their rhythms, needs, aspirations, and dreams.</p>
+    </div>
+    <div class="value-card">
+      <div class="value-num">02</div>
+      <div class="value-name">Material Truth</div>
+      <p class="value-desc">We select materials that are authentic, durable, and beautiful — never superficial. Quality you can feel in every surface.</p>
+    </div>
+    <div class="value-card">
+      <div class="value-num">03</div>
+      <div class="value-name">Timeless Vision</div>
+      <p class="value-desc">We design against trends. Our work is meant to be loved not just today, but ten, twenty, thirty years from now.</p>
+    </div>
+    <div class="value-card">
+      <div class="value-num">04</div>
+      <div class="value-name">Transparent Process</div>
+      <p class="value-desc">No hidden costs, no surprises. Clear communication and full transparency at every stage of the design journey.</p>
+    </div>
+  </div>
+
+  <div class="team-section">
+    <div class="section-eyebrow">Our People</div>
+    <h2 class="section-title">Meet the <em>Creative Minds</em></h2>
+    <div class="team-grid">
+      <div class="team-card">
+        <img class="team-photo" src="https://images.unsplash.com/photo-1560250097-0b93528c311a?w=600&q=80" alt="Marco Vensco">
+        <div class="team-info">
+          <div class="team-name">Marco Vensco</div>
+          <div class="team-role">Founder & Principal Designer</div>
+        </div>
+      </div>
+      <div class="team-card">
+        <img class="team-photo" src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=600&q=80" alt="Sofia Reyes">
+        <div class="team-info">
+          <div class="team-name">Sofia Reyes</div>
+          <div class="team-role">Senior Interior Designer</div>
+        </div>
+      </div>
+      <div class="team-card">
+        <img class="team-photo" src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&q=80" alt="James Hartwell">
+        <div class="team-info">
+          <div class="team-name">James Hartwell</div>
+          <div class="team-role">Commercial Design Lead</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================== REVIEWS ======================== -->
+<section id="reviews" class="page-section">
+  <div class="reviews-header">
+    <div class="section-eyebrow" style="justify-content:center">Client Testimonials</div>
+    <h2 class="section-title">Words From Our <em>Clients</em></h2>
+    <p class="section-body" style="max-width:500px;margin:0 auto">We measure our success by the joy and satisfaction of the people who live and work in the spaces we create.</p>
+  </div>
+
+  <div class="rating-showcase">
+    <div class="rating-big">
+      <div class="rating-number">4.9</div>
+      <div class="rating-stars">★★★★★</div>
+      <div class="rating-label">Average Client Rating</div>
+    </div>
+    <div class="rating-divider"></div>
+    <div class="rating-breakdown">
+      <div class="rating-bar-row">
+        <span class="rating-bar-label">5 ★</span>
+        <div class="rating-bar-track"><div class="rating-bar-fill" style="width:88%"></div></div>
+        <span class="rating-bar-count">88%</span>
+      </div>
+      <div class="rating-bar-row">
+        <span class="rating-bar-label">4 ★</span>
+        <div class="rating-bar-track"><div class="rating-bar-fill" style="width:9%"></div></div>
+        <span class="rating-bar-count">9%</span>
+      </div>
+      <div class="rating-bar-row">
+        <span class="rating-bar-label">3 ★</span>
+        <div class="rating-bar-track"><div class="rating-bar-fill" style="width:2%"></div></div>
+        <span class="rating-bar-count">2%</span>
+      </div>
+      <div class="rating-bar-row">
+        <span class="rating-bar-label">2 ★</span>
+        <div class="rating-bar-track"><div class="rating-bar-fill" style="width:1%"></div></div>
+        <span class="rating-bar-count">1%</span>
+      </div>
+      <div class="rating-bar-row">
+        <span class="rating-bar-label">1 ★</span>
+        <div class="rating-bar-track"><div class="rating-bar-fill" style="width:0%"></div></div>
+        <span class="rating-bar-count">0%</span>
+      </div>
+    </div>
+    <div class="rating-divider"></div>
+    <div style="text-align:center">
+      <div class="stat-num" style="font-family:var(--font-display);font-size:64px;font-weight:300;color:var(--gold);line-height:1">640+</div>
+      <div style="font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--taupe);margin-top:6px">Verified Reviews</div>
+    </div>
+  </div>
+
+  <div class="reviews-grid">
+    <div class="review-card">
+      <div class="review-quote">"</div>
+      <p class="review-text">Working with Vensco completely changed how I relate to my home. Every morning I wake up and feel genuinely grateful for the space I'm in. That's something I never expected from an interior designer.</p>
+      <div class="review-stars">★★★★★</div>
+      <div class="review-author">
+        <img class="review-avatar" src="https://images.unsplash.com/photo-1494790108755-2616b612b786?w=100&q=80" alt="Client">
+        <div>
+          <div class="review-name">Alexandra Thompson</div>
+          <div class="review-location">Manhattan, New York</div>
+          <div class="review-project">Residential — Full Apartment Redesign</div>
+        </div>
+      </div>
+    </div>
+    <div class="review-card">
+      <div class="review-quote">"</div>
+      <p class="review-text">The Vensco team delivered our restaurant fitout on time and 12% under budget — without sacrificing a single element of the design vision. Our bookings increased 40% in the first month after reopening.</p>
+      <div class="review-stars">★★★★★</div>
+      <div class="review-author">
+        <img class="review-avatar" src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100&q=80" alt="Client">
+        <div>
+          <div class="review-name">Daniel Park</div>
+          <div class="review-location">Chicago, Illinois</div>
+          <div class="review-project">Commercial — Restaurant & Bar</div>
+        </div>
+      </div>
+    </div>
+    <div class="review-card">
+      <div class="review-quote">"</div>
+      <p class="review-text">Sofia took the time to truly understand how my family lives — and designed around that reality. The result feels effortless and considered. Our kids love it. Our guests are speechless.</p>
+      <div class="review-stars">★★★★★</div>
+      <div class="review-author">
+        <img class="review-avatar" src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=100&q=80" alt="Client">
+        <div>
+          <div class="review-name">Michelle Chen</div>
+          <div class="review-location">San Francisco, CA</div>
+          <div class="review-project">Residential — Family Home</div>
+        </div>
+      </div>
+    </div>
+    <div class="review-card">
+      <div class="review-quote">"</div>
+      <p class="review-text">I was skeptical about spending on a designer but the ROI has been undeniable. Our office renovation improved team morale measurably, and three clients specifically mentioned the space during pitches. Worth every penny.</p>
+      <div class="review-stars">★★★★★</div>
+      <div class="review-author">
+        <img class="review-avatar" src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=100&q=80" alt="Client">
+        <div>
+          <div class="review-name">Robert Fielding</div>
+          <div class="review-location">Boston, MA</div>
+          <div class="review-project">Commercial — Corporate Office</div>
+        </div>
+      </div>
+    </div>
+    <div class="review-card">
+      <div class="review-quote">"</div>
+      <p class="review-text">The 3D walkthrough they provided before construction started was game-changing. I could actually see and feel the space before it existed. The final result matched it almost perfectly. Incredible process.</p>
+      <div class="review-stars">★★★★★</div>
+      <div class="review-author">
+        <img class="review-avatar" src="https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?w=100&q=80" alt="Client">
+        <div>
+          <div class="review-name">Priya Nambiar</div>
+          <div class="review-location">Houston, Texas</div>
+          <div class="review-project">Residential — New Build</div>
+        </div>
+      </div>
+    </div>
+    <div class="review-card">
+      <div class="review-quote">"</div>
+      <p class="review-text">Five years later and my apartment still looks as fresh and relevant as the day it was completed. That's timeless design. Marco's team has a rare understanding of what will endure versus what will date.</p>
+      <div class="review-stars">★★★★★</div>
+      <div class="review-author">
+        <img class="review-avatar" src="https://images.unsplash.com/photo-1527980965255-d3b416303d12?w=100&q=80" alt="Client">
+        <div>
+          <div class="review-name">Thomas Weiss</div>
+          <div class="review-location">Seattle, Washington</div>
+          <div class="review-project">Residential — Luxury Condo</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================== CONTACT ======================== -->
+<section id="contact" class="page-section">
+  <div class="contact-split">
+    <div class="contact-info">
+      <div class="section-eyebrow">Get in Touch</div>
+      <h2 class="section-title">Let's Create<br>Something<br><em style="color:var(--gold-light)">Beautiful</em></h2>
+      <p class="section-body">Whether you're planning a full renovation or simply exploring possibilities, we'd love to hear about your vision. Every great project begins with a conversation.</p>
+
+      <div class="contact-details">
+        <div class="contact-item">
+          <div class="contact-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+              <circle cx="12" cy="10" r="3"/>
+            </svg>
+          </div>
+          <div>
+            <div class="contact-item-label">Studio Location</div>
+            <div class="contact-item-value">240 Design Boulevard, Suite 12<br>New York, NY 10001</div>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.32 2 2 0 0 1 3.58 1h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 8.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+            </svg>
+          </div>
+          <div>
+            <div class="contact-item-label">Phone</div>
+            <div class="contact-item-value">+1 (212) 555-0184<br>Mon–Fri, 9am–6pm EST</div>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+              <polyline points="22,6 12,13 2,6"/>
+            </svg>
+          </div>
+          <div>
+            <div class="contact-item-label">Email</div>
+            <div class="contact-item-value">hello@venscointerior.com<br>projects@venscointerior.com</div>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <circle cx="12" cy="12" r="10"/>
+              <polyline points="12 6 12 12 16 14"/>
+            </svg>
+          </div>
+          <div>
+            <div class="contact-item-label">Studio Hours</div>
+            <div class="contact-item-value">Monday – Friday: 9:00 – 18:00<br>Saturday: 10:00 – 15:00 (by appt)</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="contact-form-side">
+      <div class="form-title">Send Us a Message</div>
+      <p class="form-sub">Fill in the form below and a member of our design team will be in touch within 24 hours.</p>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label class="form-label">First Name</label>
+          <input type="text" class="form-input" id="fname" placeholder="Your first name">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Last Name</label>
+          <input type="text" class="form-input" id="lname" placeholder="Your last name">
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Email Address</label>
+        <input type="email" class="form-input" id="email" placeholder="your@email.com">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Phone Number</label>
+        <input type="tel" class="form-input" id="phone" placeholder="+1 (000) 000-0000">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Service Interest</label>
+        <select class="form-select" id="service">
+          <option value="">Select a service...</option>
+          <option>Residential Design</option>
+          <option>Commercial Spaces</option>
+          <option>Space Planning</option>
+          <option>Lighting Design</option>
+          <option>Furniture & FF&E</option>
+          <option>3D Visualization</option>
+          <option>Full Project</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Tell Us About Your Project</label>
+        <textarea class="form-textarea" id="message" placeholder="Describe your space, goals, timeline, and any inspiration you have in mind..."></textarea>
+      </div>
+      <button class="submit-btn" onclick="submitForm()"><span>Send Message →</span></button>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-top">
+    <div class="footer-brand">
+      <span class="brand">VENSCO</span>
+      <span class="tagline">Interior Inc</span>
+      <p>Award-winning interior design studio crafting exceptional residential and commercial spaces since 2010. Where vision meets craft, and craft meets life.</p>
+      <div class="footer-socials">
+        <a class="social-link">in</a>
+        <a class="social-link">ig</a>
+        <a class="social-link">fb</a>
+        <a class="social-link">pi</a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>Quick Links</h4>
+      <ul>
+        <li><a onclick="showSection('home')">Home</a></li>
+        <li><a onclick="showSection('services')">Services</a></li>
+        <li><a onclick="showSection('gallery')">Portfolio</a></li>
+        <li><a onclick="showSection('about')">About Us</a></li>
+        <li><a onclick="showSection('reviews')">Reviews</a></li>
+        <li><a onclick="showSection('contact')">Contact</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Services</h4>
+      <ul>
+        <li><a>Residential Design</a></li>
+        <li><a>Commercial Spaces</a></li>
+        <li><a>Space Planning</a></li>
+        <li><a>Lighting Design</a></li>
+        <li><a>Furniture & FF&E</a></li>
+        <li><a>3D Visualization</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Contact</h4>
+      <ul>
+        <li><a>240 Design Blvd, Suite 12</a></li>
+        <li><a>New York, NY 10001</a></li>
+        <li><a>+1 (212) 555-0184</a></li>
+        <li><a>hello@venscointerior.com</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span class="footer-copy">© 2025 Vensco Interior Inc. All rights reserved.</span>
+    <span class="footer-copy">Privacy Policy · Terms of Service</span>
+  </div>
+</footer>
+
+<!-- Lightbox -->
+<div class="lightbox" id="lightbox" onclick="closeLightbox()">
+  <span class="lightbox-close" onclick="closeLightbox()">×</span>
+  <img id="lightboxImg" src="" alt="">
+</div>
+
+<!-- Toast -->
+<div class="toast" id="toast">✓ Message sent! We'll be in touch shortly.</div>
+
+<script>
+  // Section navigation
+  function showSection(id) {
+    document.querySelectorAll('.page-section').forEach(s => s.classList.remove('active'));
+    document.getElementById(id).classList.add('active');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  // Hamburger (mobile)
+  function toggleMenu() {
+    const links = document.querySelector('.nav-links');
+    if (links.style.display === 'flex') {
+      links.style.display = 'none';
+    } else {
+      links.style.cssText = 'display:flex;flex-direction:column;position:absolute;top:80px;left:0;right:0;background:var(--warm-white);padding:20px 30px;gap:16px;border-bottom:1px solid var(--soft-taupe);z-index:999';
+    }
+  }
+
+  // Gallery filter
+  function filterGallery(btn, cat) {
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    document.querySelectorAll('.gallery-item').forEach(item => {
+      if (cat === 'all' || item.dataset.cat === cat) {
+        item.style.display = 'block';
+      } else {
+        item.style.display = 'none';
+      }
+    });
+  }
+
+  // Lightbox
+  function openLightbox(el) {
+    const img = el.querySelector('img');
+    document.getElementById('lightboxImg').src = img.src;
+    document.getElementById('lightbox').classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeLightbox() {
+    document.getElementById('lightbox').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  // Form submit
+  function submitForm() {
+    const fname = document.getElementById('fname').value.trim();
+    const email = document.getElementById('email').value.trim();
+    if (!fname || !email) {
+      alert('Please fill in at least your name and email.');
+      return;
+    }
+    const toast = document.getElementById('toast');
+    toast.classList.add('show');
+    setTimeout(() => toast.classList.remove('show'), 4000);
+    ['fname','lname','email','phone','service','message'].forEach(id => {
+      const el = document.getElementById(id);
+      if (el) el.value = '';
+    });
+  }
+</script>
+</body>
+</html>
